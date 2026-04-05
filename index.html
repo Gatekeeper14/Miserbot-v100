@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MiserBot v100</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#020617;
+color:white;
+text-align:center;
+margin:0;
+padding:0;
+overflow:hidden;
+}
+
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#020617;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-size:22px;
+}
+
+.bot{
+font-size:60px;
+animation:walk 1s infinite alternate;
+}
+
+@keyframes walk{
+from{transform:translateX(-10px)}
+to{transform:translateX(10px)}
+}
+
+#main{
+display:none;
+padding-top:80px;
+}
+
+input{
+display:block;
+margin:12px auto;
+padding:14px;
+width:260px;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+
+button{
+background:#7c3aed;
+border:none;
+padding:14px 30px;
+color:white;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#6d28d9;
+}
+
+.success{
+margin-top:20px;
+color:#22c55e;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+
+<div class="bot">🤖</div>
+<div>Initializing MiserBot...</div>
+
+</div>
+
+
+<div id="main">
+
+<h1>👑 MiserBot v100</h1>
+<p>AI Lead Capture System</p>
+
+<form id="leadForm">
+
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone" required>
+
+<button type="submit">Join</button>
+
+</form>
+
+<div id="msg" class="success"></div>
+
+</div>
+
+
+<script>
+
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+document.getElementById("main").style.display="block";
+document.body.style.overflow="auto";
+},2500);
+
+
+
+const form=document.getElementById("leadForm");
+
+form.addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+const name=document.getElementById("name").value;
+const email=document.getElementById("email").value;
+const phone=document.getElementById("phone").value;
+
+await fetch("https://web-production-a4856.up.railway.app/webhook",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+name,
+email,
+phone
+})
+
+});
+
+document.getElementById("msg").innerText="🚀 Lead Sent Successfully";
+
+form.reset();
+
+});
+
+</script>o
+
+</body>
+</html>
