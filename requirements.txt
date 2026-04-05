@@ -1,0 +1,15 @@
+# ════════════════════════════════════════
+
+# requirements.txt
+
+# ════════════════════════════════════════
+
+flask
+flask-cors
+gunicorn
+stripe
+requests
+openai
+python-telegram-bot==20.7
+kerykeion
+reportlab
